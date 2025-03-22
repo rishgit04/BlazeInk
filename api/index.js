@@ -25,7 +25,10 @@ mongoose
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  methods: ['POST', 'GET', 'PUT', 'OPTIONS', 'DELETE']
+}));
 // app.use(express.json());
 app.use(cookieParser());
 
