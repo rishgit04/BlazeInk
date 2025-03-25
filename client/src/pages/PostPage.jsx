@@ -17,7 +17,12 @@ export default function PostPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${VITE_SERVER}/api/post/getposts?slug=${postSlug}`);
+        const res = await fetch(`${VITE_SERVER}/api/post/getposts?slug=${postSlug}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
         const data = await res.json();
         if (!res.ok) {
           setError(true);

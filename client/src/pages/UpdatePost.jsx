@@ -30,7 +30,12 @@ export default function UpdatePost() {
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`${VITE_SERVER}/api/post/getposts?postId=${postId}`);
+        const res = await fetch(`${VITE_SERVER}/api/post/getposts?postId=${postId}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);

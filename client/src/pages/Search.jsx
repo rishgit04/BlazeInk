@@ -37,7 +37,12 @@ export default function Search() {
     const fetchPosts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`${VITE_SERVER}/api/post/getposts?${searchQuery}`);
+      const res = await fetch(`${VITE_SERVER}/api/post/getposts?${searchQuery}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (!res.ok) {
         setLoading(false);
         return;
