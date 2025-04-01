@@ -40,7 +40,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/comment/getcomments?startIndex=${startIndex}`, {
+        `${VITE_SERVER}/api/comment/getcomments?startIndex=${startIndex}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -63,7 +63,7 @@ export default function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/comment/deleteComment/${commentIdToDelete}`,
+        `${VITE_SERVER}/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
           headers: {
